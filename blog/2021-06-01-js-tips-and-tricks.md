@@ -139,7 +139,18 @@ Muốn random 1 số nguyên trong khoảng cho trước ta có thể sử dụn
 const randomNumber = (min, max) => Math.floor(Math.random() * (max - min + 1) + min);
 ```
 
-## 6. Loại bỏ các mảng bị duplicates
+## 6. Đảo ngược một chuỗi
+Bạn có thể đảo ngược một chuỗi bằng cách sử dụng các phương kết hợp các phương thức `split`, `join` và `reverse`
+
+```js
+const stringReverse = str => str.split("").reverse().join("");
+
+stringReverse("Welcome to Javascript")
+//tpircsavaJ ot emocleW
+```
+
+
+## 7. Loại bỏ các mảng bị duplicates
 Ta có thể kết hợp kiểu object Set với toán tử spread (...) để tạo mảng mới với các giá trị duy nhất
 
 ```javascript
@@ -147,7 +158,28 @@ const array = [1, 1, 2, 4, 3, 2]
 const uniqueArray = [...new Set(array)]    // [1, 2, 4, 3]
 ```
 
-## 7. Dynamic property names
+
+## 8. Lấy giá trị trung bình của một mảng số
+Javascript `reducer` cho phép tính giá trị trung bình của một mảng số
+
+```javascript
+const average = arr => arr.reduce((a, b) => a + b) / arr.length
+
+console.log(average([21, 56, 23, 122, 67]))
+//57.8
+```
+
+## 9. Viết hoa đầu chuỗi
+Mặc dù Javascript không cung cấp phương thức viết hoa tích hợp, nhưng việc viết phương thức viết hoa một chuỗi của riêng chúng tôi chỉ mất một dòng.
+
+```javascript
+const average = arr => arr.reduce((a, b) => a + b) / arr.length
+
+console.log(average([21, 56, 23, 122, 67]))
+//57.8
+```
+
+## 9. Dynamic property names
 Trong ES6 bạn có thể dùng 1 biến để làm key cho objects như ví dụ sau:
 
 ```javascript
