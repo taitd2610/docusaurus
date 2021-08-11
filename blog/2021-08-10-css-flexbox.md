@@ -31,9 +31,10 @@ slug: /flexbox-cheat-sheets-in-2021-css-2021
 - [6. `justify-content`](#6-justify-content)
 - [7. `align-content`](#7-align-content)
 - [8. `align-items`](#8-align-items)
-- [Link tham khảo:](#link-tham-khảo)
-
-![Alt](https://res.cloudinary.com/practicaldev/image/fetch/s--0D9b5bgs--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/8dj24bi57fyi3qv21u8e.png)
+- [9. `align-self`](#9-align-self)
+- [10. `flex - grow | shrink | wrap | basis`](#10-flex---grow--shrink--wrap--basis)
+- [11. Cách viết tắt (Short Hands)](#11-cách-viết-tắt-short-hands)
+- [12. Link tham khảo](#12-link-tham-khảo)
 
 ## 1. Flexbox là gì thế ?
 
@@ -57,15 +58,13 @@ Biểu đồ này chứa mọi thuộc tính và giá trị có thể có mà b�
 
 ![Alt](https://res.cloudinary.com/practicaldev/image/fetch/s--NBPSPt0K--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/gv3jyh4xt4fbwtq1qejn.png)
 
-Đơn giản chỉ tạo một grid element không giúp bạn tiến xa. Bạn cũng cần xác định cấu trúc của grid. Để thêm một số cột vào grid, hãy sử dụng thuộc tính `grid-template-columns` trong grid container như sau:
-
 ## 4. Cách thiết lập dự án
 
 Đối với dự án này, bạn cần biết một chút về HTML, CSS và cách làm việc với VS Code. Cùng mình theo dõi nhé ->
 
 1. Tạo một thư mục có tên "Project-1" & Mở VS Code
-2. Tạo tệp index.html & style.css
-3. Cài đặt extension Live Server & chạy Live Server.
+2. Tạo tệp `index.html` & `style.css`
+3. Cài đặt extension [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) & chạy [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer).
 
 Hoặc, bạn có thể thực hành với [Codepen](https://codepen.io/). Ở cuối hướng dẫn này, bạn có thể tạo bố cục trang web chính xác hơn.
 
@@ -85,9 +84,9 @@ Trong file `index.html`, hãy viết đoạn code sau trong thẻ `body`
 
 Style cho các box ở trên, như thế này:
 
-> Lưu ý: đừng quên đặt chiều cao của container.
+> **Lưu ý**: đừng quên đặt chiều cao của container.
 
-```css
+```css title="style.css" title="style.css"
 .container {
   height: 100vh;
 }
@@ -98,7 +97,7 @@ Style cho các box ở trên, như thế này:
   background-color: skyblue;
   border: 2px solid black;
 
-  // To view the letter better
+  /* To view the letter better */
   font-size: 65px;
 }
 ```
@@ -113,19 +112,20 @@ Flexbox hoạt động trên **lớp cha**, không hoạt động trên **lớp 
 
 Vì vậy, hãy áp dụng `display: flex` bên trong lớp `.container`. Và đặt đoạn code bên dưới ở giữa lớp `.box` như thế này ->
 
-```css
+```css title="style.css" title="style.css"
 .container {
   display: flex;
   height: 100vh;
+  background-color: antiquewhite;
 
-  // To place some gap between boxes
+  /* To place some gap between boxes */
   gap: 25px;
 }
 
 [class^="box-"] {
-  // Code from previous step are here
+  /* Code from previous step are here */
 
-  // Placing text at center
+  /* Placing text at center */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -144,13 +144,13 @@ Direction / Orientation trong đó các flex-item được phân phối bên tro
 
 Để tạo lại những kết quả này, hãy viết CSS như sau.
 
-> Lưu ý: Chúng ta sẽ viết bên trong lớp `.container`
+> **Lưu ý**: Chúng ta sẽ viết bên trong lớp `.container`
 
-```css
+```css title="style.css"
 .container {
-  //code from setup stage are here
+  /* code from setup stage are here */
 
-  // Change the value  👇 here to see results
+  /* Change the value  👇 here to see results */
   flex-direction: row;
 }
 ```
@@ -165,13 +165,13 @@ Thuộc tính này sắp xếp các flex-item dọc theo TRỤC CHÍNH (MAIN AXI
 
 Để tạo lại những kết quả này, hãy viết CSS như sau.
 
-> Lưu ý: Chúng ta sẽ viết bên trong lớp `.container`
+> **Lưu ý**: Chúng ta sẽ viết bên trong lớp `.container`
 
-```css
+```css title="style.css"
 .container {
-  //code from setup stage are here
+  /* code from setup stage are here */
 
-  //  Change the value  👇 here to see results
+  /* Change the value  👇 here to see results */
   justify-content: flex-start;
 }
 ```
@@ -184,14 +184,14 @@ Thuộc tính này sắp xếp các flex-items dọc theo TRỤC DỌC (CROSS AX
 
 ![Alt](https://res.cloudinary.com/practicaldev/image/fetch/s--kat1xDe2--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/zeet3705rsmz77v66x3c.png)
 
-Xin lưu ý rằng, nếu không có thuộc tính `flex-wrap`, thuộc tính này không hoạt động, đây là bản demo.
+> **Lưu ý**: Nếu không có thuộc tính `flex-wrap`, thuộc tính này không hoạt động.
 
-```css
+```css title="style.css"
 .container {
-  //  Change the value  👇 here to see results
+  /* Change the value  👇 here to see results */
   align-content: center;
 
-  // without this line, align-content won't work
+  /* without this line, align-content won't work */
   flex-wrap: wrap;
 }
 ```
@@ -204,15 +204,140 @@ Thuộc tính này phân phối các flex-items dọc theo TRỤC DỌC (CROSS A
 
 Để tạo lại những kết quả này, hãy viết CSS như sau.
 
-```css
+```css title="style.css"
 .container {
-  //code from setup stage are here
+  /* code from setup stage are here */
 
-  // Change the value 👇 here to see results
+  /* Change the value 👇 here to see results */
   align-items: flex-end;
 }
 ```
 
-## Link tham khảo:
+## 9. `align-self`
 
-https://dev.to/joyshaheb/flexbox-cheat-sheets-in-2021-css-2021-3edl
+Thuộc tính này hoạt động trên các **lớp con**. Nó định item đã chọn dọc theo TRỤC DỌC (CROSS AXIS).
+
+![Alt](https://res.cloudinary.com/practicaldev/image/fetch/s--iaLpi97E--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/383cxj4ippb21vjq31q2.png)
+
+Tổng cộng chúng ta có 6 giá trị
+
+- `flex-start`
+- `flex-end`
+- `center`
+- `baseline`
+- `stretch`
+- `auto`
+
+Để tạo lại những kết quả này, hãy viết CSS như sau.
+
+```css title="style.css"
+.box-2 {
+  /* Change the value 👇 here to see results */
+  align-self: center;
+}
+```
+
+## 10. `flex - grow | shrink | wrap | basis`
+
+Các thuộc tính mà chúng ta đang thảo luận ngay bây giờ sẽ hoạt động khi chúng ta thay đổi kích thước cửa sổ. Hãy đi sâu vào ngay.
+Thuộc tính này hoạt động trên các **lớp con**. Nó định item đã chọn dọc theo TRỤC DỌC (CROSS AXIS).
+
+- `flex-grow` : tăng kích thước của một flex-item dựa trên chiều rộng của flex-container.
+- `flex-shrink` : co lại kích thước của một flex item dựa trên chiều rộng của flex-container, đối lập với `flex-grow`.
+
+![Alt](https://res.cloudinary.com/practicaldev/image/fetch/s--nlgR-7xg--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/z094e3wehsoe8z6lsxnz.png)
+
+Để đạt được những kết quả này, hãy viết CSS như sau.
+
+> **Lưu ý**: `flex-grow` & `flex-shrink` hoạt động trên các lớp con. Vì vậy, chúng ta sẽ focus vào lớp `.box`
+
+```css title="style.css"
+.box-1 {
+  flex-grow: 1;
+}
+.box-2 {
+  flex-grow: 5;
+}
+.box-1 {
+  flex-grow: 1;
+}
+```
+
+Thay đổi kích thước cửa sổ và xem kết quả.
+
+Để tái hiện kết quả của `flex-shrink`, hãy viết CSS sau.
+
+> **Lưu ý**: Xóa thuộc tính `flex-wrap`, nếu không nó sẽ không hoạt động.
+
+```css title="style.css"
+.box-1 {
+  flex-grow: 1;
+}
+.box-2 {
+  flex-grow: 5;
+}
+.box-1 {
+  flex-grow: 1;
+}
+```
+
+Bây giờ, thay đổi kích thước cửa sổ và xem kết quả.
+
+- `flex-wrap` : Số lượng flex-item bạn muốn trong một line / row.
+
+![Alt](https://res.cloudinary.com/practicaldev/image/fetch/s--ynBOvGcf--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/fux9qc05e6rtat192vlm.png)
+
+Điều này hoạt động trên lớp cha `.container`. Vì vậy, viết CSS sau.
+
+```css title="style.css"
+.container {
+  /* other codes are here */
+  /* Change value 👇 here to see results */
+  flex-wrap: wrap;
+}
+```
+
+- `flex-basis` : Điều này tương tự như thêm chiều rộng cho một flex-item, nhưng chỉ flexible hơn.  
+  `flex-basis: 10em`; nó sẽ đặt kích thước ban đầu của một flex-item thành 10em. Kích thước cuối cùng của nó sẽ dựa trên không gian có sẵn, `flex-grow` và `flex-shrink`.
+
+## 11. Cách viết tắt (Short Hands)
+
+- `flex` : Nó là cách viết tắt để kết hợp `flex-grow`, `flex-shrink` và `flex-basis`.
+
+  ![Alt](https://res.cloudinary.com/practicaldev/image/fetch/s--1FTp58u9--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/onoxj7gs9xj4wuf87kjl.png)
+
+  > **Lưu ý** : Nó chỉ hoạt động trên các lớp con.
+
+  ```css title="style.css"
+  .box-2 {
+    flex: 2 1 30em;
+  }
+  ```
+
+- `flex-flow` : Nó là cách viết tắt để kết hợp `flex-direction` và `flex-wrap`.
+
+  ![Alt](https://res.cloudinary.com/practicaldev/image/fetch/s--HHc4Q3Ul--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/awniqyrepbha5jdquwxh.png)
+
+  > **Lưu ý** : Nó chỉ hoạt động trên lớp cha.
+
+  ```css title="style.css"
+  .container {
+    flex-flow: row wrap;
+  }
+  ```
+
+  - `place-content` : Nó là cách viết tắt để kết hợp `justify-content` và `align-content`.
+
+  ![Alt](https://res.cloudinary.com/practicaldev/image/fetch/s--RLRPPt7z--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/72yaytxgighz0cjskp2e.png)
+
+  > **Lưu ý** : Nó chỉ hoạt động trên lớp cha.
+
+  ```css title="style.css"
+  .container {
+    place-content: center flex-end;
+  }
+  ```
+
+## 12. Link tham khảo
+
+<https://dev.to/joyshaheb/flexbox-cheat-sheets-in-2021-css-2021-3edl>
